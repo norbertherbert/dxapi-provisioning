@@ -1,9 +1,9 @@
 # DX-API Provisioning script
 
 1. Clone the repository and create a config.json file:  
-`git clone https://github.com/norbertherbert/dxapi-provisioning.git`
-`cd dxapi-provisioning`
-`mv config_.json config.json`
+`git clone https://github.com/norbertherbert/dxapi-provisioning.git`  
+`cd dxapi-provisioning`  
+`mv config_.json config.json`  
 2. Update the "apiBaseUrl" property in the config.json file.
    The "apiBaseUrl" value depends on your platform.  
    For example the dev1 community platforms use: https://dx-api-dev1.thingpark.com while production platform use https://dx-api.thingpark.com
