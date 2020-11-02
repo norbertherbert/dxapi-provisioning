@@ -29,12 +29,12 @@ for device in devices:
     print(data_json)
     print('------------------------')
 
-    req = Request(url = config['apiBaseUrl'] + '/core/latest/api/devices', data = data_json.encode('utf-8'))
-    req.add_header('Content-Type', 'application/json')
-    req.add_header('Accept', 'application/json')
+    req = Request( url = config['apiBaseUrl'] + '/core/latest/api/devices', data = bytes(data_json.encode('utf-8')), method = 'POST' )
+    req.add_header('Content-Type', 'application/json; charset=UTF-8')
+    req.add_header('Accept', 'application/json; charset=UTF-8')
     req.add_header('Authorization', 'Bearer ' + config['token'])
     try:
-        body = urlopen(req).read().decode()
+        body = urlopen(req).read().decode('utf-8')
     except error.HTTPError as e:
         body = e.read().decode('utf-8')
     print('------------------------')
