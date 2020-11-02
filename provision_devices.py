@@ -1,6 +1,10 @@
-import json, csv
+import json, csv, sys
 from urllib import error
 from urllib.request import Request, urlopen
+
+if len(sys.argv) != 2 :
+    print('usage: provision_devices.py <CSV file>')
+    quit()
 
 try:
     config_file_json = open('config.json', 'r')
@@ -11,9 +15,9 @@ except OSError:
 config = json.load(config_file_json)
 
 try:
-    devices_file_csv = open('devices.csv', 'r', encoding="utf-8-sig")
+    devices_file_csv = open(sys.argv[1], 'r', encoding="utf-8-sig")
 except OSError:
-    print('cannot open: devices.csv')
+    print("cannot open: %s" % sys.argv[1] )
     quit()
 
 devices = csv.DictReader(devices_file_csv, delimiter=',')

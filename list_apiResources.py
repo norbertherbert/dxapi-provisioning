@@ -3,9 +3,7 @@ from urllib import error
 from urllib.request import Request, urlopen
 
 if len(sys.argv) != 2 :
-    print('get_apiResponse.py requires exactly one argument:')
-    print('    devices | deviceProfiles | connectivityPlans | routingProfiles | ')
-    print('    baseStations | baseStationProfiles')
+    print('usage: list_apiResources.py devices|deviceProfiles|connectivityPlans|routingProfiles|baseStations|baseStationProfiles')
     quit()
 
 apiResource = sys.argv[1]

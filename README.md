@@ -19,4 +19,4 @@ This python script helps you to provision multiple LoRaWAN devices (listed in th
    `python list_apiResources.py connectivityPlans`  
    `python list_apiResources.py routingProfiles`
 5. Provision your devices by running the _provision.py_ script:  
-   `python provision_devices.py`
+   `python provision_devices.py devices.csv`
