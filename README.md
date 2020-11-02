@@ -13,10 +13,10 @@ This python script helps you to provision multiple LoRaWAN devices (listed in th
    You can generate an access token at the /getstarted endpoint of the API like: https://dx-api-dev1.thingpark.com/getstarted
 4. Update/replace the _devices.csv_ file with your devices.  
    Please note that within the csv file the _deviceProfileId_, _connectivityPlanId_ and routingProfileId fields must have the value of a valid id.  
-   You can list the valid resource ids with the _apiResource.py_ script.  
+   You can list the valid resource ids with the _list_apiResource.py_ script.  
    (The script works only after you updated your _token_ in the _config.json_ file.)  
-   `python apiResources.py deviceProfiles`  
-   `python apiResources.py connectivityPlans`  
-   `python apiResources.py routingProfiles`
+   `python list_apiResources.py deviceProfiles`  
+   `python list_apiResources.py connectivityPlans`  
+   `python list_apiResources.py routingProfiles`
 5. Provision your devices by running the _provision.py_ script:  
-   `python provision.py`
+   `python provision_devices.py`
