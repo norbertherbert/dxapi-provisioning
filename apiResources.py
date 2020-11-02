@@ -1,6 +1,14 @@
-import json, csv
+import json, sys
 from urllib import error
 from urllib.request import Request, urlopen
+
+if len(sys.argv) != 2 :
+    print('get_apiResponse.py requires exactly one argument:')
+    print('    devices | deviceProfiles | connectivityPlans | routingProfiles | ')
+    print('    baseStations | baseStationProfiles')
+    quit()
+
+apiResource = sys.argv[1]
 
 try:
     config_file_json = open('config.json', 'r')
@@ -10,7 +18,7 @@ except OSError:
 
 config = json.load(config_file_json)
 
-req = Request(url = config['apiBaseUrl'] + '/core/latest/api/deviceProfiles')
+req = Request(url = config['apiBaseUrl'] + '/core/latest/api/' + apiResource)
 req.add_header('Accept', 'application/json')
 req.add_header('Authorization', 'Bearer ' + config['token'])
 try:
