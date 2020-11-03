@@ -7,7 +7,7 @@ def print_usage():
     print('<apiResource> = devices|deviceProfiles|connectivityPlans|routingProfiles|baseStations|baseStationProfiles')
     print('<pageIndex> is an integer. Numbering starts from 1. The page size is always 100.')
 
-# Parse the config file
+# Parse config file
 try:
     config_file_json = open('config.json', 'r')
 except OSError:
@@ -15,7 +15,7 @@ except OSError:
     sys.exit(1)
 config = json.load(config_file_json)
 
-# Parse the cli params
+# Parse CLI params
 if (len(sys.argv) < 2) or (len(sys.argv) > 3) :
     print_usage()
     sys.exit(1)
@@ -29,6 +29,7 @@ if len(sys.argv) == 3 :
         print_usage()
         sys.exit(1)
 
+# Perform API request
 req = Request(
     url = config['apiBaseUrl'] + '/core/latest/api/' + apiResource + '?' + parse.urlencode(queryParams),
     headers = {
