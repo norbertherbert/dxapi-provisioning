@@ -3,7 +3,7 @@ from urllib import parse, error
 from urllib.request import Request, urlopen
 
 def print_usage():
-    print('usage: python create_devices.py <CSV file>')
+    print('usage: python verify_devices.py <CSV file>')
 
 # Parse config file
 try:
@@ -30,25 +30,24 @@ devices = csv.DictReader(devices_file_csv, delimiter=',')
 # Perform API requests
 for device in devices:
 
-    data_json = json.dumps(device, indent=4)
-    print('------------------------')
-    print(data_json)
-    print('------------------------')
+    queryParams = { 'deviceEUI' : device['EUI']}
 
     req = Request( 
-        url = config['apiBaseUrl'] + '/core/latest/api/devices', 
-        data = bytes(data_json.encode('utf-8')),
+        url = config['apiBaseUrl'] + '/core/latest/api/devices?' + parse.urlencode(queryParams), 
         headers = {
-            'Content-Type': 'application/json; charset=UTF-8', 
             'Accept': 'application/json; charset=UTF-8', 
             'Authorization': 'Bearer ' + config['token']
         },
-        method = 'POST'
+        method = 'GET'
     )
     try:
         body = urlopen(req).read().decode('utf-8')
+        provisionedDevices = json.loads(body)
+        if len(provisionedDevices) == 0:
+            print('WARNING: EUI ' + device['EUI'] + ' is not provisioned!')
+        else:
+            print(body)
     except error.HTTPError as err:
         body = err.read().decode('utf-8')
-    print('------------------------')
-    print(json.loads(body))
-    print('------------------------')
+        print(body)
+
