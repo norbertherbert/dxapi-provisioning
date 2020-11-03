@@ -25,7 +25,7 @@ This python script helps you to provision multiple LoRaWAN devices (listed in th
     This will run through the CSV file and check if every devive has been provisioned.
 7. You can list all provisioned devices using the following command:  
    `python list_apiResources.py devices`  
-   If the list contains more than 100 devices, you can request a specific page number like this
+   If the list contains more than 100 devices, you can request a specific page number like this  
    `python list_apiResources.py devices <pageIndex>`  
    The page size is always 100
 8. You can delete one of the newly created devices with the following command:  
