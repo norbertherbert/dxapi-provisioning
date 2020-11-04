@@ -7,11 +7,11 @@ def print_usage():
 
 # Parse config file
 try:
-    config_file_json = open('config.json', 'r')
+    with open('config.json', 'r') as config_file_json:
+        config = json.load(config_file_json)        
 except OSError:
     print('cannot open: config.json')
     sys.exit(1)
-config = json.load(config_file_json)
 
 # Parse CLI params
 if len(sys.argv) != 2 :
